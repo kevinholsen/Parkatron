@@ -1,31 +1,117 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+export interface Region {
+  name: string;
+  lots: Lot[];
+}
+
+export interface Lot {
+  name: string;
+  zone: string;
+  capacity: number;
+}
+
+
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
+
+  regions: Region[];
+
   selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.regions = [
+      {
+      name: 'Hillside',
+      lots: [
+        {
+        name: 'N3',
+        zone: 'purple',
+        capacity: 400
+        },
+        {
+        name: 'C4',
+        zone: 'blue',
+        capacity: 300
+        },
+        {
+        name: 'R1',
+        zone: 'purple',
+        capacity: 550
+        },
+        {
+        name: 'R7',
+        zone: 'purple',
+        capacity: 80
+        }
+      ]
+    },
+    {
+      name: 'East Campus',
+      lots: []
+    },
+    {
+        name: 'Bluestone',
+        lots: []
+      },
+      {
+        name: 'Lakeview',
+        lots: []
+      },
+      {
+        name: 'Convo',
+        lots: [
+          {
+            name: 'Convo A',
+            zone: 'purple',
+            capacity: 400
+          },
+          {
+            name: 'Convo B',
+            zone: 'purple',
+            capacity: 400
+          },
+          {
+            name: 'Convo C',
+            zone: 'purple',
+            capacity: 400
+          },
+          {
+            name: 'Convo D',
+            zone: 'purple',
+            capacity: 400
+          },
+          {
+            name: 'Convo E',
+            zone: 'purple',
+            capacity: 400
+          },
+          {
+            name: 'Convo F',
+            zone: 'purple',
+            capacity: 400
+          },
+          {
+            name: 'Convo G',
+            zone: 'purple',
+            capacity: 400
+          }
+        ]
+      },
+    ];
+
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+   
 
-    this.items = [];
-    for (let i = 1; i < 6; i++) {
-      this.items.push({
-        title: 'Lot' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    
+    
   }
 
   itemTapped(event, item) {
